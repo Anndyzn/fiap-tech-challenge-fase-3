@@ -11,6 +11,7 @@ import Admin from "./pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PostForm from "./pages/PostForm";
 import Header from "./components/Header";
+import AdminComments from "./pages/AdminComments";
 
 function App() {
   return (
@@ -62,6 +63,14 @@ function App() {
           }
         />
 
+        <Route
+          path="/admin/posts/:id/comentarios"
+          element={
+            <ProtectedRoute>
+              <AdminComments />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
     </BrowserRouter>

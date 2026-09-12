@@ -59,6 +59,14 @@ const LogoutButton = styled.button`
   cursor: pointer;
 `;
 
+const CommentsButton = styled(Link)`
+  padding: 10px 16px;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+`;
+
 const PostList = styled.div`
   display: flex;
   flex-direction: column;
@@ -242,6 +250,13 @@ function Admin() {
                 </PostInfo>
 
                 <Actions>
+
+                  <CommentsButton
+                    to={`/admin/posts/${post.id}/comentarios`}
+                  >
+                    Comentários
+                  </CommentsButton>
+
                   <EditButton
                     to={`/admin/posts/${post.id}/editar`}
                   >
@@ -255,6 +270,7 @@ function Admin() {
                   >
                     Excluir
                   </DeleteButton>
+
                 </Actions>
 
               </PostItem>

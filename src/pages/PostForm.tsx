@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  type FieldProps
+} from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
 
@@ -30,6 +36,26 @@ const Container = styled.div`
   }
 `;
 
+const TopActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`;
+
+const BackLink = styled(Link)`
+  color: #2563eb;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const StyledForm = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -42,6 +68,20 @@ const StyledField = styled(Field)`
   border-radius: 8px;
   font-size: 16px;
   width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: #2563eb;
+  }
+`;
+
+const StyledTextarea = styled.textarea`
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  resize: vertical;
 
   &:focus {
     outline: none;
@@ -133,6 +173,13 @@ function PostForm() {
   return (
     <Page>
       <Container>
+
+        <TopActions>
+          <BackLink to="/admin">
+            ← Voltar para o painel
+          </BackLink>
+
+        </TopActions>
         <h1>
           {editando ? "Editar postagem" : "Nova postagem"}
         </h1>
@@ -157,20 +204,27 @@ function PostForm() {
               component={ErrorText}
             />
 
-            <label htmlFor="conteudo">Conteúdo</label>
+            <label htmlFor="conteudo">
+              Conteúdo
+            </label>
+            <Field name="conteudo">
+              {({ field, meta }: FieldProps<string>) => (
+                <>
+                  <StyledTextarea
+                    {...field}
+                    id="conteudo"
+                    rows={8}
+                    placeholder="Digite o conteúdo"
+                  />
 
-            <StyledField
-              as="textarea"
-              id="conteudo"
-              name="conteudo"
-              rows="8"
-              placeholder="Digite o conteúdo"
-            />
-
-            <ErrorMessage
-              name="conteudo"
-              component={ErrorText}
-            />
+                  {meta.touched && meta.error && (
+                    <ErrorText>
+                      {meta.error}
+                    </ErrorText>
+                  )}
+                </>
+              )}
+            </Field>
 
             <label htmlFor="autor">Autor</label>
 
