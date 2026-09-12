@@ -67,8 +67,8 @@ O front-end utiliza **Axios** para consumir os endpoints criados na Fase 2.
 
 - Visualizar postagens;
 - Pesquisar por palavras-chave;
-- Ler o conteúdo completo de uma postagem;
-- fazer comentários nos posts.
+- Ler o conteúdo completo;
+- Visualizar e adicionar comentários.
 
 ### Professores
 
@@ -76,9 +76,8 @@ O front-end utiliza **Axios** para consumir os endpoints criados na Fase 2.
 - Acessar o painel administrativo;
 - Criar postagens;
 - Editar postagens;
-- Excluir postagens.
-
-As páginas de criação, edição e administração são protegidas por autenticação, conforme solicitado no desafio. :contentReference[oaicite:1]{index=1}
+- Excluir postagens;
+- Visualizar e excluir comentários.
 
 ---
 
